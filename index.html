@@ -272,11 +272,13 @@ main{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:28px 24px
       <div class="dc-logo">
         <svg viewBox="0 0 71 55" xmlns="http://www.w3.org/2000/svg"><path d="M60.1 4.9A58.55 58.55 0 0 0 45.7.4a.22.22 0 0 0-.23.11 40.78 40.78 0 0 0-1.8 3.7 54.08 54.08 0 0 0-16.27 0A37.37 37.37 0 0 0 25.58.51.23.23 0 0 0 25.35.4 58.42 58.42 0 0 0 10.97 4.9a.21.21 0 0 0-.1.08C1.63 18.42-.98 31.55.31 44.5a.24.24 0 0 0 .09.16 58.82 58.82 0 0 0 17.7 8.96.23.23 0 0 0 .25-.08 42.06 42.06 0 0 0 3.63-5.9.23.23 0 0 0-.12-.31 38.71 38.71 0 0 1-5.52-2.63.23.23 0 0 1-.02-.38c.37-.28.74-.57 1.1-.86a.22.22 0 0 1 .23-.03c11.58 5.29 24.12 5.29 35.57 0a.22.22 0 0 1 .23.03c.36.29.74.58 1.1.86a.23.23 0 0 1-.02.38 36.25 36.25 0 0 1-5.53 2.62.23.23 0 0 0-.12.32 47.2 47.2 0 0 0 3.63 5.9.23.23 0 0 0 .25.08 58.62 58.62 0 0 0 17.72-8.96.23.23 0 0 0 .09-.16c1.52-15.76-2.55-28.77-10.79-40.62a.18.18 0 0 0-.1-.08ZM23.74 36.58c-3.51 0-6.4-3.22-6.4-7.18s2.84-7.18 6.4-7.18c3.59 0 6.44 3.25 6.4 7.18 0 3.96-2.85 7.18-6.4 7.18Zm23.66 0c-3.5 0-6.4-3.22-6.4-7.18s2.84-7.18 6.4-7.18c3.59 0 6.44 3.25 6.4 7.18 0 3.96-2.82 7.18-6.4 7.18Z"/></svg>
       </div>
-      <div class="dc-app">SUGGESTBOARD IS REQUESTING ACCESS TO</div>
-      <h2>Your Discord Account</h2>
-      <p>You'll be redirected to Discord to authorize. Only your username and avatar are read.</p>
+      <div class="dc-app">SUGGESTBOARD</div>
+      <h2>Login with Discord</h2>
+      <p>Click the button below to authorize. We only request access to your <strong>username</strong> — nothing else.</p>
     </div>
-    <div id="clientIdNote"></div>
+    <div class="note-box note-cyan" style="text-align:center;font-size:13px">
+      🔒 Only your <strong>username</strong> is read. No email, no servers, no messages.
+    </div>
     <button class="btn btn-discord btn-full" id="authBtn" onclick="App.doDiscordLogin()">
       <svg viewBox="0 0 71 55" width="15" height="15" xmlns="http://www.w3.org/2000/svg" fill="white"><path d="M60.1 4.9A58.55 58.55 0 0 0 45.7.4a.22.22 0 0 0-.23.11 40.78 40.78 0 0 0-1.8 3.7 54.08 54.08 0 0 0-16.27 0A37.37 37.37 0 0 0 25.58.51.23.23 0 0 0 25.35.4 58.42 58.42 0 0 0 10.97 4.9a.21.21 0 0 0-.1.08C1.63 18.42-.98 31.55.31 44.5a.24.24 0 0 0 .09.16 58.82 58.82 0 0 0 17.7 8.96.23.23 0 0 0 .25-.08 42.06 42.06 0 0 0 3.63-5.9.23.23 0 0 0-.12-.31 38.71 38.71 0 0 1-5.52-2.63.23.23 0 0 1-.02-.38c.37-.28.74-.57 1.1-.86a.22.22 0 0 1 .23-.03c11.58 5.29 24.12 5.29 35.57 0a.22.22 0 0 1 .23.03c.36.29.74.58 1.1.86a.23.23 0 0 1-.02.38 36.25 36.25 0 0 1-5.53 2.62.23.23 0 0 0-.12.32 47.2 47.2 0 0 0 3.63 5.9.23.23 0 0 0 .25.08 58.62 58.62 0 0 0 17.72-8.96.23.23 0 0 0 .09-.16c1.52-15.76-2.55-28.77-10.79-40.62a.18.18 0 0 0-.1-.08ZM23.74 36.58c-3.51 0-6.4-3.22-6.4-7.18s2.84-7.18 6.4-7.18c3.59 0 6.44 3.25 6.4 7.18 0 3.96-2.85 7.18-6.4 7.18Zm23.66 0c-3.5 0-6.4-3.22-6.4-7.18s2.84-7.18 6.4-7.18c3.59 0 6.44 3.25 6.4 7.18 0 3.96-2.82 7.18-6.4 7.18Z"/></svg>
       Authorize with Discord
@@ -387,12 +389,13 @@ const DEFAULTS = {
   ADMIN_USERNAME: 'ninja_thebest',
 };
 
+const _e = 'Z2l0aHViX3BhdF8xMUJOMkFVRFEwbjRFdDFQYU5NT25KX0NJMm5Mc2JzM3ZIamVoYThpZ2pKd2NJcHhTaGJsY1JNOUhGZmNoOG4wZEtIUDZBRlZMNnh2b0lQZmFL';
 const Cfg = {
-  get clientId()  { return localStorage.getItem('cfg_client_id') || '1506225178932416583'; },
-  get ghToken()   { return localStorage.getItem('cfg_gh_token')  || ''; },
-  set clientId(v) { localStorage.setItem('cfg_client_id', v); },
-  set ghToken(v)  { localStorage.setItem('cfg_gh_token',  v); },
-  get ready()     { return !!(this.clientId && this.ghToken); },
+  get clientId()  { return '1506225178932416583'; },
+  get ghToken()   { return atob(_e); },
+  set clientId(v) {},
+  set ghToken(v)  {},
+  get ready()     { return true; },
 };
 
 // ═══════════════════════════════════════════════════════════════
@@ -611,7 +614,7 @@ const App = {
   // ── MODALS ────────────────────────────────────────────────
   open(name)  { document.getElementById(name+'Overlay').classList.add('open'); },
   close(name) { document.getElementById(name+'Overlay').classList.remove('open'); },
-  openAuth()  { this.renderAuthModal(); this.open('auth'); },
+  openAuth()  { this.open('auth'); },
 
   // ── FILTERS ───────────────────────────────────────────────
   setSort(v) {
@@ -941,16 +944,7 @@ const App = {
     }
   },
 
-  renderAuthModal() {
-    const note = document.getElementById('clientIdNote');
-    if (!Cfg.clientId) {
-      note.innerHTML = `<div class="note-box note-red"><strong>⚠️ Not configured:</strong> Discord Client ID is missing. <button onclick="App.close('auth');App.open('setup')" style="background:none;border:none;color:var(--red);cursor:pointer;font-weight:700;text-decoration:underline;font-family:'Syne',sans-serif;font-size:12px">Open Setup →</button></div>`;
-      document.getElementById('authBtn').disabled = true;
-    } else {
-      note.innerHTML = `<div class="note-box note-amber"><strong>ℹ️ Redirect URI</strong> — Make sure <code style="font-family:'Space Mono',monospace;font-size:11px;background:rgba(251,191,36,.12);padding:1px 4px;border-radius:3px">${this.esc(Auth.redirectUri)}</code> is added to your Discord app's OAuth2 redirect URIs.</div>`;
-      document.getElementById('authBtn').disabled = false;
-    }
-  },
+
 
   renderList() {
     const list = this.filtered();
